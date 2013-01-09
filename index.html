@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Php-benchmark by victorjonsson</title>
+    <title>PHP-benchmark by Victor Jonsson</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -16,7 +16,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Php-benchmark</h1>
+        <h1 class="header">PHP-benchmark</h1>
         <p class="header">Easy to use benchmark script for your PHP-application. Get information about average loading time, memory consumption and more...</p>
 
         <ul>
@@ -32,7 +32,7 @@
       <section>
         <h1>PHP-Benchmark</h1>
 
-<p>This library contains classes used to compare algorithms and benchmark your application.</p>
+<p>This library contains classes used to <a href="#comparing-algorithms">compare algorithms</a> and benchmark your application.</p>
 
 <h2>Benchmarking</h2>
 
@@ -43,26 +43,26 @@
 install it in your project using <a href="http://getcomposer.org/">composer</a>
 </li>
 <li>Include the file init.php in the very beginning of the first file that receives the request to your
-application (this is usually index.php). Then load the address of your website in the browser with the 
+application (this is usually index.php). After having done this you can load the address of your website in the browser with the
 query parameters <code>php-benchmark-test=1&amp;display-data=1</code> and the benchmark data will be displayed in the upper left corner
 of your website.</li>
 </ol><p><img src="http://victorjonsson.github.com/PHP-Benchmark/sc-1.png" alt="Becnhmark 1"></p>
 
-<h4>Taking snapshots</h4>
+<h3>Taking snapshots</h3>
 
-<p>If you want to take snapshots from the benchmark data during the request you may do so by adding the following code.</p>
+<p>If you want to take snapshots from the benchmark data during the request you can do so by adding the following code where you want a snapshot to be taken.</p>
 
 <div class="highlight"><pre> <span class="nx">\PHPBenchmark\Monitor</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">snapshot</span><span class="p">(</span><span class="s1">'Bootstrap finished'</span><span class="p">);</span>
 </pre></div>
 
-<p>Inserting some snapshots in the source code of WordPress gave me the following benchmark data</p>
+<p>Inserting some snapshots in the source code of WordPress may give the following benchmark data:</p>
 
 <p><img src="http://victorjonsson.github.com/PHP-Benchmark/sc-2.png" alt="Becnhmark 1"></p>
 
 <h3>Stress test using command line (nodejs)</h3>
 
-<p>By using the (nodejs) command line tool you'll get information about average memory peaks and time spent on page 
-generation. The test will do a number of requests to your application with a query parameter
+<p>By using the command line tool (nodejs) you'll get information about average memory peaks and time spent on generating
+the page. The test will do a number of requests to your application with a query parameter
 that tells the benchmark script to monitor the time and memory consumption during the request. When all requests
 is finished you will get the following information:</p>
 
@@ -75,8 +75,8 @@ is finished you will get the following information:</p>
 <li>The highest time spent on generating the page during the test</li>
 <li>The number of failed requests (timeout or http status other then 200)</li>
 </ul><p>First of all you need to <a href="http://nodejs.org/#download">install node</a> if you haven't already. After that you have installed node you have to
-download the <a href="https://raw.github.com/victorjonsson/PHP-Benchmark/master/php-benchmark">nodejs script</a> to your server, name
-the file <em>php-benchmark</em>. Then navigate to the directory where your nodejs script is located and run one of the 
+download the <a href="https://raw.github.com/victorjonsson/PHP-Benchmark/master/php-benchmark">nodejs script</a> to your server (name
+the file <em>php-benchmark</em>). Then navigate to the directory where your nodejs script is located and run one of the
 following commands:</p>
 
 <p><code>$ node php-benchmark http://mywebsite.com/</code> Will do a benchmark test with 50 requests that gives you average page generation time, memory peak,
@@ -99,7 +99,7 @@ option as low as 1-2 requests per second.</p>
 
 <p><em>All options can of course be used together as well, these commands are only simple examples.</em></p>
 
-<h2>Comparing algorithms</h2>
+<h2 id="comparing-algorithms">Comparing algorithms</h2>
 
 <h3>Setup (manually)</h3>
 
