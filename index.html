@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">PHP-benchmark</h1>
-        <p class="header">Easy to use benchmark script for your PHP-application. Get information about average loading time, memory consumption and more...</p>
+        <p class="header">This a library containing classes used to compare algorithms and benchmark your application.</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/victorjonsson/PHP-Benchmark/zipball/master">Download ZIP</a></li>
@@ -32,7 +32,7 @@
       <section>
         <h1>PHP-Benchmark</h1>
 
-<p>This library contains classes used to <a href="#comparing-algorithms">compare algorithms</a> and benchmark your application.</p>
+<p>This a library containing classes used to <a href="#comparing-algorithms">compare algorithms</a> and benchmark your application.</p>
 
 <h2>Benchmarking</h2>
 
@@ -113,7 +113,7 @@ you have to do is to  include the file <code>lib/autoload.php</code> to be able 
 <h3>Example code</h3>
 
 <div class="highlight"><pre>
-<span class="k">require</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
+<span class="k">require</span> <span class="s1">'vendor/autoload.php'</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">\PHPBenchmark\FunctionComparison</span><span class="p">;</span>
 
@@ -128,7 +128,7 @@ you have to do is to  include the file <code>lib/autoload.php</code> to be able 
 
 </pre></div>
 
-<p>Load a file with this code in the browser (or run it via command line) and you will find out that <code>stream_resolve_include_pate</code> wins
+<p>Load a file with this code in the browser (or run it via command line) and you will find out that <code>stream_resolve_include_path</code> wins
 the game, being about 30-35% faster.</p>
 
 <h3>Extending <em>\PHPBenchmark\AbstractFunctionComparison</em></h3>
