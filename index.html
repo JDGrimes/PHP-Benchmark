@@ -131,7 +131,7 @@ you have to do is to  include the file <code>lib/autoload.php</code> to be able 
 <p>Load a file having this code in the browser or call it via command line and you will find out that <code>stream_resolve_include_pate</code> wins
 the game, being about 30-35% faster.</p>
 
-<h3>Extending AbstractFunctionComparison</h3>
+<h3>Extending <em>\PHPBenchmark\AbstractFunctionComparison</em></h3>
 
 <p>If you would want to manage a large collections of tests you can create a class (extending <a href="https://github.com/victorjonsson/PHP-Benchmark/blob/master/lib/PHPBenchmark/AbstractFunctionComparison.php">AbstractFunctionComparison</a>)
 for each test. Put all classes in the same directory and call <code>FunctionComparison::runTests( $path_to_class_directory )</code> and 
