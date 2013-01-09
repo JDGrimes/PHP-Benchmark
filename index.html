@@ -113,7 +113,7 @@ you have to do is to  include the file <code>lib/autoload.php</code> to be able 
 <h3>Example code</h3>
 
 <div class="highlight"><pre>
-<span class="k">require</span> <span class="nx">__DIR__</span><span class="o">.</span><span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
+<span class="k">require</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">\PHPBenchmark\FunctionComparison</span><span class="p">;</span>
 
@@ -128,7 +128,7 @@ you have to do is to  include the file <code>lib/autoload.php</code> to be able 
 
 </pre></div>
 
-<p>Load a file having this code in the browser or call it via command line and you will find out that <code>stream_resolve_include_pate</code> wins
+<p>Load a file with this code in the browser (or run it via command line) and you will find out that <code>stream_resolve_include_pate</code> wins
 the game, being about 30-35% faster.</p>
 
 <h3>Extending <em>\PHPBenchmark\AbstractFunctionComparison</em></h3>
