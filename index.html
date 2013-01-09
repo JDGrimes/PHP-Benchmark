@@ -30,10 +30,39 @@
 
       </header>
       <section>
-        <h1>PHP-Benchmark !!</h1>
+        <h1>PHP-Benchmark</h1>
 
-<p>Easy to use benchmark script for your PHP-application. Gives you information about average memory peaks and time spent
-on page generation. The test will do a number of requests to your application with a query parameter
+<p>This library contains classes used to compare algorithms and benchmark your application.</p>
+
+<h2>Benchmarking</h2>
+
+<h3>Setup</h3>
+
+<ol>
+<li>Either <a href="https://github.com/victorjonsson/PHP-Benchmark/archive/master.zip">download</a> the library to your server or 
+install it in your project using <a href="http://getcomposer.org/">composer</a>
+</li>
+<li>Include the file init.php in the very beginning of the first file that receives the request to your
+application (this is usually index.php). Then load the address of your website in the browser with the 
+query parameters <code>php-benchmark-test=1&amp;display-data=1</code> and the benchmark data will be displayed in the upper left corner
+of your website.</li>
+</ol><p><img src="http://victorjonsson.github.com/PHP-Benchmark/sc-1.png" alt="Becnhmark 1"></p>
+
+<h4>Taking snapshots</h4>
+
+<p>If you want to take snapshots from the benchmark data during the request you may do so by adding the following code.</p>
+
+<div class="highlight"><pre> <span class="nx">\PHPBenchmark\Monitor</span><span class="o">::</span><span class="na">instance</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">snapshot</span><span class="p">(</span><span class="s1">'Bootstrap finished'</span><span class="p">);</span>
+</pre></div>
+
+<p>Inserting some snapshots in the source code of WordPress gave me the following benchmark data</p>
+
+<p><img src="http://victorjonsson.github.com/PHP-Benchmark/sc-2.png" alt="Becnhmark 1"></p>
+
+<h3>Stress test using command line (nodejs)</h3>
+
+<p>By using the (nodejs) command line tool you'll get information about average memory peaks and time spent on page 
+generation. The test will do a number of requests to your application with a query parameter
 that tells the benchmark script to monitor the time and memory consumption during the request. When all requests
 is finished you will get the following information:</p>
 
@@ -45,45 +74,7 @@ is finished you will get the following information:</p>
 <li>The highest memory peak monitored during the test</li>
 <li>The highest time spent on generating the page during the test</li>
 <li>The number of failed requests (timeout or http status other then 200)</li>
-</ul><p>You execute the tests via command line, either using PHP CLI or Nodejs CLI.</p>
-
-<h3>Dependencies</h3>
-
-<ul>
-<li>PHP version &gt;= 5.2.1</li>
-<li>allow_url_fopen has to be enabled in php.ini</li>
-</ul><h2>Setup</h2>
-
-<ol>
-<li>Download the <a href="https://raw.github.com/victorjonsson/PHP-Benchmark/master/php-benchmark.php">script</a> to your server.</li>
-<li>Open the file that is the first file to recieve the application request (this is usually index.php).</li>
-<li>Include the benchmark script in the top of the file.</li>
-</ol><h2>Usage</h2>
-
-<h3>PHP Command Line Tool</h3>
-
-<p>Open your shell interpreter and navigate to the directory where the index.php file of your appliaction is located. Use the following commands to run the
-benchmark tests.</p>
-
-<p><code>$ php index.php http://mywebsite.com/</code> Will do a benchmark test with 50 requests that gives you average page generation time, memory peak,
-number of loaded classes and included files.</p>
-
-<p><code>$ php index.php http://mywebsite.com/ -n 500</code> Will do a benchmark test with 500 requests.</p>
-
-<p><code>$ php index.php http://mywebsite.com/ -nu</code> Will prevent the use of unique URL:s when requesting the application.</p>
-
-<p><code>$ php index.php http://mywebsite.com/ -v</code> If a lot of the request fails it might be good to add <em>-v</em> to get more information about the failing requests.</p>
-
-<p><code>$ php index.php http://mywebsite.com/ -f /var/log/</code> Will write ouput to log file in /var/log/.</p>
-
-<p><code>$ php index.php http://mywebsite.com/ -f test.log</code> Will write ouput to log file test.log in current directory.</p>
-
-<p><em>All options can of course be used together as well, these commands are only simple examples.</em></p>
-
-<h3>Node Command Line Tool</h3>
-
-<p>The execution of the test goes much faster if you use the nodejs CLI. First of all you need 
-to <a href="http://nodejs.org/#download">install node</a> if you haven't already. After that you have installed node you have to
+</ul><p>First of all you need to <a href="http://nodejs.org/#download">install node</a> if you haven't already. After that you have installed node you have to
 download the <a href="https://raw.github.com/victorjonsson/PHP-Benchmark/master/php-benchmark">nodejs script</a> to your server, name
 the file <em>php-benchmark</em>. Then navigate to the directory where your nodejs script is located and run one of the 
 following commands:</p>
@@ -108,10 +99,43 @@ option as low as 1-2 requests per second.</p>
 
 <p><em>All options can of course be used together as well, these commands are only simple examples.</em></p>
 
-<h2>Display benchmark data on page load</h2>
+<h2>Comparing algorithms</h2>
 
-<p>Benchmark data will be displayed in the browser upon page load if you add query
-parameters <code>?php-benchmark-test=1&amp;display-test-data=1</code> to the URL of your application.</p>
+<h3>Setup (manually)</h3>
+
+<p><a href="https://github.com/victorjonsson/PHP-Benchmark/archive/master.zip">Download</a> the library to your server. After that all
+you have to do is to  include the file <code>lib/autoload.php</code> to be able to load the classes you want to use.</p>
+
+<h3>Setup (composer)</h3>
+
+<p>Not so much you need to do, add the dependency "phpbenchmark/phpbenchmark" to composer.json and your'e set to go.</p>
+
+<h3>Example code</h3>
+
+<div class="highlight"><pre>
+<span class="k">require</span> <span class="nx">__DIR__</span><span class="o">.</span><span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">\PHPBenchmark\FunctionComparison</span><span class="p">;</span>
+
+<span class="nx">FunctionComparison</span><span class="o">::</span><span class="na">load</span><span class="p">()</span>
+    <span class="o">-&gt;</span><span class="na">setFunctionA</span><span class="p">(</span><span class="s1">'stream_resolve_include_path'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$bool</span> <span class="o">=</span> <span class="nb">stream_resolve_include_path</span><span class="p">(</span><span class="k">__FILE__</span><span class="p">)</span> <span class="o">!==</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">setFunctionB</span><span class="p">(</span><span class="s1">'file_exists'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$bool</span> <span class="o">=</span> <span class="nb">file_exists</span><span class="p">(</span><span class="k">__FILE__</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">exec</span><span class="p">();</span>
+
+</pre></div>
+
+<p>Load a file having this code in the browser or call it via command line and you will find out that <code>stream_resolve_include_pate</code> wins
+the game, being about 30-35% faster.</p>
+
+<h3>Extending AbstractFunctionComparison</h3>
+
+<p>If you would want to manage a large collections of tests you can create a class (extending <a href="https://github.com/victorjonsson/PHP-Benchmark/blob/master/lib/PHPBenchmark/AbstractFunctionComparison.php">AbstractFunctionComparison</a>)
+for each test. Put all classes in the same directory and call <code>FunctionComparison::runTests( $path_to_class_directory )</code> and 
+you'll be able to execute all tests in one request.</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
@@ -121,4 +145,3 @@ parameters <code>?php-benchmark-test=1&amp;display-test-data=1</code> to the URL
 		
   </body>
 </html>
->>>>>>> 998df1794321a8488e1bb78cafa5d885d7e58704
